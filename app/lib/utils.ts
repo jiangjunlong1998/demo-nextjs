@@ -6,7 +6,23 @@ export const formatCurrency = (amount: number) => {
     currency: 'USD',
   });
 };
-
+export function formatMoney(amount: string, currencyCode: string): string {
+  const num = parseFloat(amount);
+  return new Intl.NumberFormat("zh-CN", {
+    style: "currency",
+    currency: currencyCode,
+    minimumFractionDigits: 2,
+  }).format(num);
+}
+export function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString("zh-CN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
 export const formatDateToLocal = (
   dateStr: string,
   locale: string = 'en-US',
